@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+        {% include ('common/head.html.twig') %}
+
+        <title>{{ title }}</title>
+    </head>
+    <body>
+
+        <div class="container">
+
+            {% include ('common/navbar.html.twig') %}
+
+                {% block content %}
+
+                {% endblock %}
+
+{% include ('common/footer.html.twig') %}
+
+        </div><!-- /container -->
+
+{% include ('common/javascript.html.twig') %}
+    </body>
+</html>

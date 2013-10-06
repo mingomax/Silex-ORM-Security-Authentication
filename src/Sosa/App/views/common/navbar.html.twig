@@ -1,0 +1,29 @@
+    {% if current is not defined %}
+        {% set current = null %}
+    {% endif %}
+
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="brand" href="/">Sosa</a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right">
+                                {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <li>
+                                    <a href="{{ path('logout') }}">Log out</a>
+                                </li>
+                                {% else %}
+                                <li {% if path('login') == app.request.getRequestURI() %}class="active"{% endif %}>
+                                    <a href="{{ path('login') }}">Log in</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /navbar -->

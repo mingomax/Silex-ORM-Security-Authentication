@@ -1,0 +1,48 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Short description for doctrine cli tool
+ * @package Sosa
+ * @author Ronan Guilloux <ronan.guilloux@gmail.com>
+ * @version 0.1
+ * @copyright (C) 2013 Ronan Guilloux
+ * @license MIT
+ */
+
+ini_set('display_errors', 1);
+error_reporting(-1);
+
+require_once __DIR__.'/vendor/autoload.php';
+
+use Symfony\Component\Console\Application,
+    Symfony\Component\Console\Helper\HelperSet,
+    Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper,
+    Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper,
+    Doctrine\ORM\Tools\Console\ConsoleRunner,
+    Doctrine\ORM\Version,
+    Sosa\Console\Commands\FixturesLoad;
+
+$env = "dev";
+$app = require __DIR__.'/src/Sosa/App/app.php';
+$em = $app['orm.em'];
+$helperSet = new HelperSet(array(
+    'em' => new EntityManagerHelper($em),
+    'conn' => new ConnectionHelper($em->getConnection()),
+    'db' => new ConnectionHelper($em->getConnection())
+));
+
+//ConsoleRunner::run($helperSet);
+
+$cli = new Application('Doctrine Command Line Interface', Version::VERSION);
+$cli->setCatchExceptions(true);
+$cli->setHelperSet($helperSet);
+
+// Register All Doctrine Commands
+ConsoleRunner::addCommands($cli);
+
+// Register your own command
+$fixturesLoadCommand = new FixturesLoad();
+$fixturesLoadCommand->setContainer($app);
+$cli->addCommands(array($fixturesLoadCommand));
+
+$cli->run();

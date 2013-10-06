@@ -1,0 +1,49 @@
+{
+    "name": "ronanguilloux/sosa",
+    "type": "App",
+    "description": "Silex-ORM-Security-Authentication",
+    "keywords": ["webapp", "authentication", "orm", "silex"],
+    "homepage": "https://github.com/ronanguilloux/Silex-ORM-Security-Authentication",
+    "license": "Copyrigth (c) Ronan Guilloux - MIT License",
+    "authors": [{
+        "name": "Ronan Guilloux",
+        "email": "ronan.guilloux@gmail.com"
+        }],
+    "require": {
+        "php"                                        : ">=5.3.3",
+        "monolog/monolog"                            : ">=1.0.0",
+        "silex/silex"                                : "1.0.*@dev",
+        "twig/twig"                                  : ">=1.8,<2.0-dev",
+        "twig/extensions"                            : "1.0.*@dev",
+        "symfony/console"                            : ">=2.3,<2.4-dev",
+        "symfony/form"                               : ">=2.3,<2.4-dev",
+        "symfony/validator"                          : ">=2.3,<2.4-dev",
+        "symfony/config"                             : ">=2.3,<2.4-dev",
+        "symfony/locale"                             : ">=2.3,<2.4-dev",
+        "symfony/translation"                        : ">=2.3,<2.4-dev",
+        "symfony/twig-bridge"                        : ">=2.3,<2.4-dev",
+        "symfony/security"                           : ">=2.3,<2.4-dev",
+        "phpunit/phpunit"                            : "3.7.x-dev",
+        "doctrine/dbal"                              : ">=2.3,<2.4-dev",
+        "dflydev/doctrine-orm-service-provider"      : "1.0.*@dev",
+        "doctrine/data-fixtures"                     : "1.0.*@dev",
+        "fzaninotto/faker"                           : ">=1.2,<2",
+        "jms/serializer-service-provider"            : "dev-develop"
+    },
+    "require-dev": {
+        "symfony/browser-kit": "dev-master",
+        "symfony/css-selector": "dev-master",
+        "symfony/dom-crawler": ">=2.3,<2.4-dev"
+    },
+    "autoload": {
+        "psr-0": {
+            "Sosa": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}

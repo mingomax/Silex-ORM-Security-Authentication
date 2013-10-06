@@ -1,0 +1,30 @@
+{% extends 'layout.strip.html.twig' %}
+
+{% block content %}
+
+    {% if app.user %}
+        <p>Hello, {{ app.user.displayName }}.</p>
+        <p><a href="{{ path('logout') }}">Log out</a></p>
+    {% else %}
+        <form action="{{ '/check_login' }}" method="post" class="form-login center">
+
+            <h1>Sosa</h1>
+            <p><a href="https://github.com/ronanguilloux/Silex-ORM-Security-Authentication">Silex-ORM-Security-Authentication</a>, using Silex + Doctrine2 ORM Provider + native SecurityServiceProvider to perform an authentication system</p>
+
+            {% if error %}
+            <div class="alert alert-error">{{ error|nl2br }}</div>
+            {% endif %}
+
+            {{ form_widget(form) }}
+
+            {% if allowRememberMe %}
+                <div>
+                    <label class="checkbox">
+                    <input type="checkbox" name="_remember_me" value="true" checked> Remember me</label>
+                </div>
+            {% endif %}
+            <input type="submit" name="submit" />
+        </form>
+    {% endif %}
+
+{% endblock %}
