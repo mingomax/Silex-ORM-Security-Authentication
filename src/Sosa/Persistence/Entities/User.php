@@ -95,7 +95,7 @@ Class User implements UserInterface
      */
     public function displayName()
     {
-        return sprintf("%s %s", $this->getFirstName, $this->getLastName);
+        return sprintf("%s %s", $this->getFirstName(), $this->getLastName());
     }
 
     /**
@@ -136,8 +136,29 @@ Class User implements UserInterface
         $this->setRoles('ROLE_USER');
         $this->setSalt($faker->sha256);
         $this->setEncodedPassword($container, $this->getEmail()); // Password is open data
-        //$this->setPassword($this->getEmail()); // Password is open data
+        $this->setPassword($this->getEmail()); // Password is open data
         $this->setCreatedAt($faker->dateTime);
+        $this->setUpdatedAt($this->getCreatedAt());
+
+        return $this;
+    }
+
+    /**
+     * getTest: get test user
+     * @param App $container
+     *
+     * @return User $this
+     */
+    public function getTest($container)
+    {
+        $faker = Factory::create();
+        $this->setFirstName($container['tests.user']['first_name']);
+        $this->setLastName($container['tests.user']['last_name']);
+        $this->setEmail($container['tests.user']['email']);
+        $this->setRoles($container['tests.user']['roles']);
+        $this->setSalt($faker->sha256);
+        $this->setEncodedPassword($container, $container['tests.user']['password']);
+        $this->setCreatedAt($container['tests.user']['created_at']);
         $this->setUpdatedAt($this->getCreatedAt());
 
         return $this;

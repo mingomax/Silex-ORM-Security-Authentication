@@ -1,3 +1,7 @@
+log:
+	    mkdir -p resources/log
+	    touch development.log
+
 entities:
 	    ./console orm:generate-entities src/
 
@@ -7,4 +11,4 @@ fixtures:
 tests:
 	    ./phpunit
 
-install: entities fixtures
+install: log entities fixtures

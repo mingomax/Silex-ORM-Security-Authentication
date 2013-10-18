@@ -121,7 +121,7 @@ class UserProvider implements UserProviderInterface
      */
     public function setUserPassword(User $user, $password)
     {
-        $user->setPassword($this->encodeUserPassword($user, $password));
+        return $user->setPassword($this->encodeUserPassword($user, $password));
     }
 
     /**
